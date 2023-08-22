@@ -25,3 +25,12 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+@layer utilities {
+  .clip-left {
+    clip-path: polygon(2.38% 0%, 100% 0%, 100% 100%, 0% 100%, 2.38% 90.63%);
+  }
+  .clip-right {
+    clip-path: polygon(0 0, 94% 0, 94% 81%, 100% 100%, 0 100%);
+  }
+}
