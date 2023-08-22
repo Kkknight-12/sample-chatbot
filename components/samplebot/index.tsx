@@ -1,42 +1,45 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useChat } from 'ai/react';
 
 const Chatbot = () => {
-  const [messages, setMessages] = useState<any>([]);
-  const [input, setInput] = useState<any>('');
+  const { messages, input, handleInputChange, handleSubmit } = useChat();
 
-  const handleInputChange = (e: any) => {
-    setInput(e.target.value);
-  };
+  // const [messages, setMessages] = useState<any>([]);
+  // const [input, setInput] = useState<any>('');
 
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
+  // const handleInputChange = (e: any) => {
+  //   setInput(e.target.value);
+  // };
 
-    setMessages([...messages, { text: input, user: true }]);
+  // const handleSubmit = (e: any) => {
+  //   e.preventDefault();
 
-    const chatbotResponse =
-      "Hello! I'm your chatbot. How can I assist you today?";
+  //   setMessages([...messages, { text: input, user: true }]);
 
-    setMessages([...messages, { text: chatbotResponse, user: false }]);
+  //   const chatbotResponse =
+  //     "Hello! I'm your chatbot. How can I assist you today?";
 
-    setInput('');
-  };
+  //   setMessages([...messages, { text: chatbotResponse, user: false }]);
+
+  //   setInput('');
+  // };
 
   return (
-    <div className='flex flex-col items-center justify-center h-[95vh] gap-4'>
+    <div className='flex flex-col items-center justify-center h-screen gap-4'>
       <div className='flex-grow bg-gray-100 p-4 overflow-auto w-1/3 rounded'>
         <div className='flex flex-col-reverse gap-4'>
           {messages.map((message, index) => (
             <div
               key={index}
               className={`rounded-lg p-2 ${
-                message.user
+                message.role
                   ? 'bg-blue-300 text-white self-end'
                   : 'bg-gray-300 text-black self-start'
               }`}
             >
-              {message.text}
+              {message.content}
             </div>
           ))}
         </div>
